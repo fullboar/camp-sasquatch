@@ -1,0 +1,641 @@
+:root {
+  --forest: #1f4d38;
+  --forest-deep: #14382a;
+  --moss: #4a7c59;
+  --ember: #e2571e;
+  --sunset: #f2a03d;
+  --gold: #f6c453;
+  --bark: #6b4a32;
+  --cream: #fdf5e4;
+  --cream-deep: #f6e9cf;
+  --ink: #2f2a24;
+  --ink-muted: #7a6f61;
+  --danger: #c9402f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-rounded, 'SF Pro Rounded', 'Quicksand', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background-color: var(--cream);
+  /* Faint camp-blanket stripes so the cream isn't flat. */
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(107, 74, 50, 0.035) 0 2px,
+    transparent 2px 26px
+  );
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  line-height: 1.55;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--forest);
+}
+
+/* ---------- Masthead ---------- */
+
+.masthead {
+  background: var(--forest);
+  position: relative;
+}
+
+.masthead-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 18px 24px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--cream);
+  transform: rotate(-8deg);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text strong {
+  font-size: 24px;
+  color: var(--cream);
+  letter-spacing: -0.4px;
+}
+
+.brand-text span {
+  font-size: 13px;
+  color: var(--gold);
+}
+
+.masthead-nav {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.masthead-nav a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.masthead-nav a:hover {
+  opacity: 1;
+  text-decoration: underline wavy;
+  text-underline-offset: 4px;
+}
+
+/* Zig-zag treeline hanging below the header, masked against the page so the
+   notches show cream rather than more green. */
+.treeline {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 16px;
+  background: var(--forest);
+  -webkit-mask-image: conic-gradient(from -45deg at bottom, #0000 90deg, #000 0);
+  -webkit-mask-size: 32px 100%;
+  -webkit-mask-repeat: repeat-x;
+  mask-image: conic-gradient(from -45deg at bottom, #0000 90deg, #000 0);
+  mask-size: 32px 100%;
+  mask-repeat: repeat-x;
+}
+
+/* ---------- Page shell ---------- */
+
+.page {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 34px 24px 64px;
+}
+
+.page-kicker {
+  display: inline-block;
+  background: var(--ember);
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 999px;
+  transform: rotate(-1.5deg);
+}
+
+.page-title {
+  font-size: clamp(32px, 5vw, 46px);
+  margin: 14px 0 6px;
+  color: var(--forest);
+  letter-spacing: -1px;
+}
+
+.page-lede {
+  margin: 0 0 30px;
+  color: var(--ink-muted);
+  max-width: 56ch;
+  font-size: 16.5px;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  background: #fff;
+  border: 3px solid var(--forest);
+  border-radius: 16px;
+  box-shadow: 7px 7px 0 rgba(31, 77, 56, 0.16);
+  overflow: hidden;
+}
+
+.card-head {
+  padding: 15px 22px;
+  background: var(--forest);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-head h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--cream);
+  letter-spacing: -0.2px;
+}
+
+.card-body {
+  padding: 24px 22px;
+}
+
+/* ---------- Reservation ---------- */
+
+.res-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  margin-bottom: 8px;
+  border-bottom: 3px dashed var(--cream-deep);
+}
+
+.res-hero .site-num {
+  width: 58px;
+  height: 58px;
+  flex: 0 0 58px;
+  border-radius: 14px;
+  background: var(--moss);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+  line-height: 1;
+}
+
+.res-hero h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--forest);
+}
+
+.res-hero p {
+  margin: 2px 0 0;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+}
+
+.order-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  font-size: 14.5px;
+  border-bottom: 1px dashed var(--cream-deep);
+}
+
+.order-row:last-of-type {
+  border-bottom: 0;
+}
+
+.order-row dt {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.order-row dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* The discount line — the payoff for proving residency. */
+.discount-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14.5px;
+  font-weight: 700;
+  border: 2px dashed #c9bfa9;
+  color: var(--ink-muted);
+  background: #faf7ef;
+}
+
+.discount-row.unlocked {
+  border-color: var(--moss);
+  border-style: solid;
+  background: #eef7ef;
+  color: var(--forest);
+  animation: pop 0.45s cubic-bezier(0.2, 1.5, 0.5, 1);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9) rotate(-1deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 3px solid var(--forest);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.order-total .amount {
+  font-size: 30px;
+  letter-spacing: -1px;
+}
+
+.was-price {
+  text-decoration: line-through;
+  color: var(--ink-muted);
+  font-size: 17px;
+  font-weight: 600;
+  margin-right: 9px;
+  letter-spacing: 0;
+}
+
+.notice {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: #fff7e6;
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  font-size: 13.5px;
+  color: var(--bark);
+}
+
+.notice strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--ember);
+}
+
+/* ---------- Verification panel ---------- */
+
+.verify-panel {
+  text-align: center;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.verify-panel p {
+  margin: 0;
+  max-width: 40ch;
+  font-size: 14.5px;
+  color: var(--ink-muted);
+}
+
+.big-emoji {
+  font-size: 54px;
+  line-height: 1;
+  animation: bob 2.6s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+.btn {
+  appearance: none;
+  border: 3px solid var(--forest-deep);
+  border-radius: 999px;
+  background: var(--ember);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 13px 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 var(--forest-deep);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--forest-deep);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--forest-deep);
+}
+
+.btn-secondary {
+  background: var(--cream);
+  color: var(--forest);
+}
+
+.qr-frame {
+  padding: 13px;
+  border: 3px dashed var(--moss);
+  border-radius: 16px;
+  background: #fff;
+}
+
+/* The OOB invitation URL is long, so the QR is dense — keep it physically
+   large enough that each module survives a phone camera. */
+.qr-frame img {
+  display: block;
+  width: 292px;
+  height: 292px;
+  image-rendering: pixelated;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--forest);
+}
+
+.spinner {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 17px;
+  border: 3px solid var(--cream-deep);
+  border-top-color: var(--ember);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.steps {
+  list-style: none;
+  margin: 2px 0 0;
+  padding: 0;
+  text-align: left;
+  font-size: 13.5px;
+  color: var(--ink-muted);
+  max-width: 34ch;
+}
+
+.steps li {
+  padding: 4px 0 4px 26px;
+  position: relative;
+}
+
+.steps li::before {
+  content: '○';
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  color: #cfc6b4;
+}
+
+.steps li.done::before {
+  content: '🔥';
+  font-size: 12px;
+}
+
+.steps li.active {
+  color: var(--forest);
+  font-weight: 700;
+}
+
+.steps li.active::before {
+  content: '👉';
+  font-size: 12px;
+}
+
+.deep-link {
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+
+/* Demo-only transport badge — not part of the campground fiction. */
+.transport {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--cream-deep);
+  color: var(--ink-muted);
+}
+
+.transport.webhook {
+  background: #dff0e3;
+  color: var(--forest);
+}
+
+/* ---------- Result states ---------- */
+
+.result-title {
+  margin: 0;
+  font-size: 24px;
+  color: var(--forest);
+  letter-spacing: -0.5px;
+}
+
+.identity-box {
+  width: 100%;
+  border: 3px solid var(--moss);
+  border-radius: 14px;
+  background: #eef7ef;
+  padding: 16px 18px;
+  text-align: left;
+}
+
+.identity-box .label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+
+.identity-box .value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--forest);
+  letter-spacing: -0.4px;
+}
+
+.identity-box .source {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 2px dashed rgba(0, 0, 0, 0.12);
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+/* Presented but signature unconfirmed — must not read as a pass. */
+.identity-box.unverified {
+  border-color: var(--sunset);
+  border-style: dashed;
+  background: #fff6e8;
+}
+
+.identity-box.unverified .source {
+  color: #8a6414;
+}
+
+.savings-banner {
+  width: 100%;
+  padding: 13px;
+  border-radius: 12px;
+  background: var(--gold);
+  color: var(--forest-deep);
+  font-weight: 700;
+  font-size: 15.5px;
+  border: 3px solid var(--forest);
+  transform: rotate(-1deg);
+}
+
+.error-detail {
+  font-size: 12.5px;
+  color: var(--danger);
+  word-break: break-word;
+  max-width: 40ch;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--forest-deep);
+  color: var(--cream);
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 26px 24px;
+  text-align: center;
+}
+
+.footer-big {
+  margin: 0 0 14px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: var(--cream);
+  font-size: 13.5px;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline wavy;
+  text-underline-offset: 3px;
+}
+
+.footer-note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: #9db3a5;
+}

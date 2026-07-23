@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+next-env.d.ts
+
+# environment — contains live Traction tenant credentials, never commit
+.env
+.env.local
+.env.*.local
+
+# editor / tooling
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# logs and OS cruft
+*.log
+npm-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
